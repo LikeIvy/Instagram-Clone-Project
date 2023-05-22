@@ -60,20 +60,23 @@
 
         </div>
     </nav>
+
     <div style="display: flex; flex-direction: row; text-align: center; justify-content: center; padding-top: 60px; background-color: #FAFAFA;">
         <div style="width: 500px; min-width: 500px; height: 1000px; margin-right: 300px;">
+            <!-- 피드박스 -->
+            {% for feed in feeds %}
             <div class="feed_box">
                 <div style="display: flex; flex-direction: row; align-items: center; margin: 0 10px;">
                     <div class="box" style="width: 35px; height: 35px;">
-                        <img class="profile" src="https://dimg.donga.com/wps/NEWS/IMAGE/2022/12/30/117225530.2.jpg">
+                        <img class="profile" src="{{ feed.profile_image }}">
                     </div>
                     <div>
-                        ivy.94
+                        {{ feed.user_id }}
                     </div>
                 </div>
 
                 <div> <img style="width: 100%;"
-                        src="https://d20aeo683mqd6t.cloudfront.net/ko/articles/title_images/000/041/032/medium/sunayamabeach-p58992431.jpeg?2021">
+                        src="{{ feed.image }}">
                 </div>
                 <div style="display: flex; flex-direction: row; justify-content: space-between; margin: 0 10px;">
                     <div>
@@ -85,195 +88,16 @@
                         <span class="material-icons-outlined">bookmark_border</span>
                     </div>
                 </div>
-                <div style="margin: 0 10px; text-align: left; font-size: 12px;"> 수지 <b>외 388명</b>이 좋아합니다.</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>ivy.94</b>오키나와는 오늘도 맑음.</div>
+                <div style="margin: 0 10px; text-align: left; font-size: 12px;"> 수지 <b>외 {{ feed.like_count }}명</b>이 좋아합니다.</div>
+                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>{{ feed.user_id }}</b>{{ feed.content }}</div>
                 <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>dino1297</b>나도 일본 여행 가고싶어!</div>
                 <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>link</b>오키나와는 덥나요?</div>
                 <div style="border-top: solid 1px gray;"><input type="text" class="form-control"
                         style="box-shadow: none; border: none; outline: none;" placeholder="댓글 달기.."></div>
             </div>
-            <div class="feed_box">
-                <div style="display: flex; flex-direction: row; align-items: center; margin: 0 10px;">
-                    <div class="box" style="width: 35px; height: 35px;">
-                        <img class="profile" src="https://dimg.donga.com/wps/NEWS/IMAGE/2022/12/30/117225530.2.jpg">
-                    </div>
-                    <div>
-                        ivy.94
-                    </div>
-                </div>
-
-                <div> <img style="width: 100%;"
-                        src="https://d20aeo683mqd6t.cloudfront.net/ko/articles/title_images/000/041/032/medium/sunayamabeach-p58992431.jpeg?2021">
-                </div>
-                <div style="display: flex; flex-direction: row; justify-content: space-between; margin: 0 10px;">
-                    <div>
-                        <span class="material-icons-outlined">favorite_border</span>
-                        <span class="material-icons-outlined">mode_comment</span>
-                        <span class="material-icons-outlined">send</span>
-                    </div>
-                    <div>
-                        <span class="material-icons-outlined">bookmark_border</span>
-                    </div>
-                </div>
-                <div style="margin: 0 10px; text-align: left; font-size: 12px;"> 수지 <b>외 388명</b>이 좋아합니다.</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>ivy.94</b>오키나와는 오늘도 맑음.</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>dino1297</b>나도 일본 여행 가고싶어!</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>link</b>오키나와는 덥나요?</div>
-                <div style="border-top: solid 1px gray;"><input type="text" class="form-control"
-                        style="box-shadow: none; border: none; outline: none;" placeholder="댓글 달기.."></div>
-            </div>
-            <div class="feed_box">
-                <div style="display: flex; flex-direction: row; align-items: center; margin: 0 10px;">
-                    <div class="box" style="width: 35px; height: 35px;">
-                        <img class="profile" src="https://dimg.donga.com/wps/NEWS/IMAGE/2022/12/30/117225530.2.jpg">
-                    </div>
-                    <div>
-                        ivy.94
-                    </div>
-                </div>
-
-                <div> <img style="width: 100%;"
-                        src="https://d20aeo683mqd6t.cloudfront.net/ko/articles/title_images/000/041/032/medium/sunayamabeach-p58992431.jpeg?2021">
-                </div>
-                <div style="display: flex; flex-direction: row; justify-content: space-between; margin: 0 10px;">
-                    <div>
-                        <span class="material-icons-outlined">favorite_border</span>
-                        <span class="material-icons-outlined">mode_comment</span>
-                        <span class="material-icons-outlined">send</span>
-                    </div>
-                    <div>
-                        <span class="material-icons-outlined">bookmark_border</span>
-                    </div>
-                </div>
-                <div style="margin: 0 10px; text-align: left; font-size: 12px;"> 수지 <b>외 388명</b>이 좋아합니다.</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>ivy.94</b>오키나와는 오늘도 맑음.</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>dino1297</b>나도 일본 여행 가고싶어!</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>link</b>오키나와는 덥나요?</div>
-                <div style="border-top: solid 1px gray;"><input type="text" class="form-control"
-                        style="box-shadow: none; border: none; outline: none;" placeholder="댓글 달기.."></div>
-            </div>
-            <div class="feed_box">
-                <div style="display: flex; flex-direction: row; align-items: center; margin: 0 10px;">
-                    <div class="box" style="width: 35px; height: 35px;">
-                        <img class="profile" src="https://dimg.donga.com/wps/NEWS/IMAGE/2022/12/30/117225530.2.jpg">
-                    </div>
-                    <div>
-                        ivy.94
-                    </div>
-                </div>
-
-                <div> <img style="width: 100%;"
-                        src="https://d20aeo683mqd6t.cloudfront.net/ko/articles/title_images/000/041/032/medium/sunayamabeach-p58992431.jpeg?2021">
-                </div>
-                <div style="display: flex; flex-direction: row; justify-content: space-between; margin: 0 10px;">
-                    <div>
-                        <span class="material-icons-outlined">favorite_border</span>
-                        <span class="material-icons-outlined">mode_comment</span>
-                        <span class="material-icons-outlined">send</span>
-                    </div>
-                    <div>
-                        <span class="material-icons-outlined">bookmark_border</span>
-                    </div>
-                </div>
-                <div style="margin: 0 10px; text-align: left; font-size: 12px;"> 수지 <b>외 388명</b>이 좋아합니다.</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>ivy.94</b>오키나와는 오늘도 맑음.</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>dino1297</b>나도 일본 여행 가고싶어!</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>link</b>오키나와는 덥나요?</div>
-                <div style="border-top: solid 1px gray;"><input type="text" class="form-control"
-                        style="box-shadow: none; border: none; outline: none;" placeholder="댓글 달기.."></div>
-            </div>
-            <div class="feed_box">
-                <div style="display: flex; flex-direction: row; align-items: center; margin: 0 10px;">
-                    <div class="box" style="width: 35px; height: 35px;">
-                        <img class="profile" src="https://dimg.donga.com/wps/NEWS/IMAGE/2022/12/30/117225530.2.jpg">
-                    </div>
-                    <div>
-                        ivy.94
-                    </div>
-                </div>
-
-                <div> <img style="width: 100%;"
-                        src="https://d20aeo683mqd6t.cloudfront.net/ko/articles/title_images/000/041/032/medium/sunayamabeach-p58992431.jpeg?2021">
-                </div>
-                <div style="display: flex; flex-direction: row; justify-content: space-between; margin: 0 10px;">
-                    <div>
-                        <span class="material-icons-outlined">favorite_border</span>
-                        <span class="material-icons-outlined">mode_comment</span>
-                        <span class="material-icons-outlined">send</span>
-                    </div>
-                    <div>
-                        <span class="material-icons-outlined">bookmark_border</span>
-                    </div>
-                </div>
-                <div style="margin: 0 10px; text-align: left; font-size: 12px;"> 수지 <b>외 388명</b>이 좋아합니다.</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>ivy.94</b>오키나와는 오늘도 맑음.</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>dino1297</b>나도 일본 여행 가고싶어!</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>link</b>오키나와는 덥나요?</div>
-                <div style="border-top: solid 1px gray;"><input type="text" class="form-control"
-                        style="box-shadow: none; border: none; outline: none;" placeholder="댓글 달기.."></div>
-            </div>
-            <div class="feed_box">
-                <div style="display: flex; flex-direction: row; align-items: center; margin: 0 10px;">
-                    <div class="box" style="width: 35px; height: 35px;">
-                        <img class="profile" src="https://dimg.donga.com/wps/NEWS/IMAGE/2022/12/30/117225530.2.jpg">
-                    </div>
-                    <div>
-                        ivy.94
-                    </div>
-                </div>
-
-                <div> <img style="width: 100%;"
-                        src="https://d20aeo683mqd6t.cloudfront.net/ko/articles/title_images/000/041/032/medium/sunayamabeach-p58992431.jpeg?2021">
-                </div>
-                <div style="display: flex; flex-direction: row; justify-content: space-between; margin: 0 10px;">
-                    <div>
-                        <span class="material-icons-outlined">favorite_border</span>
-                        <span class="material-icons-outlined">mode_comment</span>
-                        <span class="material-icons-outlined">send</span>
-                    </div>
-                    <div>
-                        <span class="material-icons-outlined">bookmark_border</span>
-                    </div>
-                </div>
-                <div style="margin: 0 10px; text-align: left; font-size: 12px;"> 수지 <b>외 388명</b>이 좋아합니다.</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>ivy.94</b>오키나와는 오늘도 맑음.</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>dino1297</b>나도 일본 여행 가고싶어!</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>link</b>오키나와는 덥나요?</div>
-                <div style="border-top: solid 1px gray;"><input type="text" class="form-control"
-                        style="box-shadow: none; border: none; outline: none;" placeholder="댓글 달기.."></div>
-            </div>
-            <div class="feed_box">
-                <div style="display: flex; flex-direction: row; align-items: center; margin: 0 10px;">
-                    <div class="box" style="width: 35px; height: 35px;">
-                        <img class="profile" src="https://dimg.donga.com/wps/NEWS/IMAGE/2022/12/30/117225530.2.jpg">
-                    </div>
-                    <div>
-                        ivy.94
-                    </div>
-                </div>
-
-                <div> <img style="width: 100%;"
-                        src="https://d20aeo683mqd6t.cloudfront.net/ko/articles/title_images/000/041/032/medium/sunayamabeach-p58992431.jpeg?2021">
-                </div>
-                <div style="display: flex; flex-direction: row; justify-content: space-between; margin: 0 10px;">
-                    <div>
-                        <span class="material-icons-outlined">favorite_border</span>
-                        <span class="material-icons-outlined">mode_comment</span>
-                        <span class="material-icons-outlined">send</span>
-                    </div>
-                    <div>
-                        <span class="material-icons-outlined">bookmark_border</span>
-                    </div>
-                </div>
-                <div style="margin: 0 10px; text-align: left; font-size: 12px;"> 수지 <b>외 388명</b>이 좋아합니다.</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>ivy.94</b>오키나와는 오늘도 맑음.</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>dino1297</b>나도 일본 여행 가고싶어!</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>link</b>오키나와는 덥나요?</div>
-                <div style="border-top: solid 1px gray;"><input type="text" class="form-control"
-                        style="box-shadow: none; border: none; outline: none;" placeholder="댓글 달기.."></div>
-            </div>
-        </div>
-        
+            {% endfor %}
+            <!-- 피드박스 끝-->
+        </div>     
         <div style="width: 400px; height: 1000px; position: fixed; left: 62%;">
             <div style="display: flex; flex-direction: row; align-items: center; margin: 0 10px;">
                 <div class="box" style="width: 50px; height: 50px;">
