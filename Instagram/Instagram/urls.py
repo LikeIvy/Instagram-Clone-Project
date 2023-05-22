@@ -17,8 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import Sub
+from content.views import Main
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('main/', Sub.as_view()) # 아무것도 없이 들어왔을 때 Sub클래스를 view로 사용하겠다.
+    path('main/', Main.as_view()) # 아무것도 없이 들어왔을 때 Sub클래스를 view로 사용하겠다.
 ]
