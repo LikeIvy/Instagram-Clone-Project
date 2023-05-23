@@ -17,9 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import Sub
-from content.views import Main
+from content.views import Main, UploadFeed
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('main/', Main.as_view()) # 아무것도 없이 들어왔을 때 Sub클래스를 view로 사용하겠다.
+    path('main/', Main.as_view()), 
+    path('content/upload', UploadFeed.as_view()),
 ]
+
+# media폴더에 저장한 파일(이미지)들을 조회할 수 있게 해주는 코드
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
