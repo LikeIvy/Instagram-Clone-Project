@@ -55,6 +55,7 @@
         background: rgba(0, 0, 0, 0.8);
         backdrop-filter: blur(1.5px);
         -webkit-backdrop-filter: blur(1.5px);
+        z-index: 1000;
         }
 
         .modal_window {
@@ -73,15 +74,15 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-light" style="position: fixed; width: 100%">
+    <nav class="navbar navbar-expand-lg bg-light" style="position: fixed; width: 100%; z-index: 999;">
         <div class="container-fluid" style="justify-content: space-between; flex-wrap: nowrap; min-width: 1000px;">
-            <a class="navbar-brand" href="#"><img style="width: 100px"
+            <a class="navbar-brand" href="main"><img style="width: 100px"
                     src="https://i.namu.wiki/i/C9DgUkHfi6o7f1AWb529VHjHQeWtTFhVdFNc6YVScQzg4pARwRjBOWgidRveffl1j8ZqQbXQ40d64t1XVHL6Zw.svg"></a>
 
             <input class="form-control me-2" style="width: 400px;" type="search" placeholder="Search"
                 aria-label="Search">
             <div style="display: flex;">
-                <span class="material-icons" style="padding-right: 10px;"> home_filled </span>
+                <a href="main" style="color: black;"><span class="material-icons" style="padding-right: 10px;"> home_filled </span></a>
                 <span class="material-icons-outlined" style="padding-right: 10px;"> send </span>
                 <span id="nav_bar_add_box" class="material-icons-outlined" style="padding-right: 10px;"> add_box </span>
                 <span class="material-icons-outlined" style="padding-right: 10px;"> explore </span>
@@ -89,11 +90,11 @@
                 <div class="dropdown">
                     <a href="#" id="dropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="box" style="width: 23px; height: 23px;">
-                            <img class="profile" src="https://dimg.donga.com/wps/NEWS/IMAGE/2022/12/30/117225530.2.jpg">
+                            <img class="profile" src="{% get_media_prefix %}{{ user.profile_img }}">
                         </div>
                     </a>
                     <ul class="dropdown-menu" style="left: -158px;" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">프로필</a></li>
+                        <li><a class="dropdown-item" href="/content/profile">프로필</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="/user/logout">로그아웃</a></li>
                     </ul>
@@ -105,15 +106,14 @@
         </div>
     </nav>
 
-    <div
-        style="display: flex; flex-direction: row; text-align: center; justify-content: center; padding-top: 60px; background-color: #FAFAFA;">
+    <div style="display: flex; flex-direction: row; text-align: center; justify-content: center; padding-top: 60px; background-color: #FAFAFA;">
         <div style="width: 500px; min-width: 500px; height: 1000px; margin-right: 300px;">
             <!-- 피드박스 -->
             {% for feed in feeds %}
             <div class="feed_box">
                 <div style="display: flex; flex-direction: row; align-items: center; margin: 0 10px;">
                     <div class="box" style="width: 35px; height: 35px;">
-                        <img class="profile" src="{{ feed.profile_image }}">
+                        <img class="profile" src="{% get_media_prefix %}{{ feed.profile_image }}">
                     </div>
                     <div>
                         {{ feed.user_id }}
@@ -140,10 +140,10 @@
             {% endfor %}
             <!-- 피드박스 끝-->
         </div>
-        <div style="width: 400px; height: 1000px; position: fixed; left: 62%;">
+        <div style="width: 400px; height: 1000px; position: fixed; left: 62%; z-index: 0;">
             <div style="display: flex; flex-direction: row; align-items: center; margin: 0 10px;">
                 <div class="box" style="width: 50px; height: 50px;">
-                    <img class="profile" src="https://dimg.donga.com/wps/NEWS/IMAGE/2022/12/30/117225530.2.jpg">
+                    <img class="profile" src="{% get_media_prefix %}{{ user.profile_img }}">
                 </div>
                 <div style="margin-left: 10px; text-align: left;">
                     <div style="font-weight: bold;">
@@ -273,7 +273,7 @@
                     새 이미지 업로드
                 </div>
                 <div style="width: 40px; background: gray;">
-                    <span class="material-icons-outlined">close</span>
+                    <span class="modal_close material-icons-outlined">close</span>
                 </div>
             </div>
             <div class="img_upload_space" style="border-top: solid 1px gray; width: 778px; height: 540px; margin-top: 10px;">
@@ -292,7 +292,7 @@
                     새 이미지 업로드
                 </div>
                 <div style="width: 40px; background: gray;">
-                    <span class="material-icons-outlined">close</span>
+                    <span class=" modal_close material-icons-outlined">close</span>
                 </div>
             </div>
             <div style="border-top: solid 1px gray; display: flex; flex-direction: row; margin-top: 10px;">
@@ -314,6 +314,15 @@
 
     <!-- Optional JavaScript; choose one of the two! -->
     <script>
+
+        $('.modal_close').click(function () {
+            $('#first_model').css({
+                display: 'none'
+            })
+            $('#second_model').css({
+                display: 'none'
+            })
+        })
         // files를 전역변수로 최상단에 선언 해 놓음으로서 어디서나 files를 쓸 수 있게 된다
         let files; 
 
@@ -333,8 +342,8 @@
             let file = files[0]  // 실제 이미지 파일
             let image = files[0].name // 이미지 파일 이름
             let content = $('#input_feed_content').val() // 내용
-            let user_id = 'ivy.94' // 사용자 id(하드코딩이기 때문에 계속해서 쓰고있는 id값을 넣은 것)
-            let profile_image = 'https://dimg.donga.com/wps/NEWS/IMAGE/2022/12/30/117225530.2.jpg' // 프로필 이미지('')
+            let user_id = '{{ user.nickname }}' 
+            let profile_image = '{{ user.profile_img }}' 
 
             // fd는 form data를 약자로 사용한 것
             let fd = new FormData()
