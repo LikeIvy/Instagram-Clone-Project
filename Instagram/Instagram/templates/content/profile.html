@@ -99,15 +99,10 @@
                     </ul>
                 </div>
             </div>
-
-
-
         </div>
     </nav>
 
-    <div
-        style="display: flex; flex-direction: row; text-align: center; justify-content: center; padding-top: 60px; background-color: #FAFAFA;">
-        <div style="width: 500px; min-width: 500px; height: 1000px; margin-right: 300px;">
+    <div style="display: flex; flex-direction: row; text-align: center; justify-content: center; padding-top: 60px; background-color: #FAFAFA;">
             <!-- 피드박스 -->
             {% for feed in feeds %}
             <div class="feed_box">
@@ -139,129 +134,30 @@
             </div>
             {% endfor %}
             <!-- 피드박스 끝-->
+
+        <div style="padding: 20px 60px;"> <!--상하 20 좌우 60-->
+            <div class="box" style="width: 175px; height: 175px;">
+                <img class="profile" src="https://dimg.donga.com/wps/NEWS/IMAGE/2022/12/30/117225530.2.jpg">
+            </div>
         </div>
-        <div style="width: 400px; height: 1000px; position: fixed; left: 62%;">
-            <div style="display: flex; flex-direction: row; align-items: center; margin: 0 10px;">
-                <div class="box" style="width: 50px; height: 50px;">
-                    <img class="profile" src="https://dimg.donga.com/wps/NEWS/IMAGE/2022/12/30/117225530.2.jpg">
+        <div style="text-align: left;">
+            <div style="display: flex; flex-direction: row; margin: 20px 0px;">
+                <div style="font-size: 26px; margin-right: 40px;">
+                 {{ user.nickname }}
                 </div>
-                <div style="margin-left: 10px; text-align: left;">
-                    <div style="font-weight: bold;">
-                        {{ user.nickname }}
-                    </div>
-                    <div style="color: gray;">
-                        {{ user.name }}
-                    </div>
-                </div>
+                <button id="button_profile_upload" style="margin-right: 40px;">프로필 사진 편집</button>
+                <input type="file" id="input_fileupload" style="display: none;"/>
+                 <span class="material-icons-outlined" style="margin-right: 40px;"> settings </span>
             </div>
-            <div style="display: flex; flex-direction: row; justify-content: space-between;">
-                <div style="font-weight: bold; color: gray;">
-                    회원님을 위한 추천
-                </div>
-                <div>
-                    <a href="#" style="text-decoration: none; color: black; font-weight: bold;">모두보기</a>
-                </div>
-            </div>
-            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
-                <div style="display: flex; flex-direction: row;">
-                    <div class="box" style="width: 35px; height: 35px;">
-                        <img class="profile"
-                            src="https://post-phinf.pstatic.net/MjAyMjA2MThfMjM5/MDAxNjU1NTYxMDQwNzg3.gUpiDFqd7AmZ-ERCaRZF8pe25x5GAwtUbXs8l5bACHAg.z1qUWyYPSLyDpuj7mXxIuTZkm_v9R1tmUWK0F_u2EYwg.JPEG/IMG_1337.jpg?type=w1200">
-                    </div>
-                    <div style="margin-left: 10px; text-align: left;">
-                        <div style="font-weight: bold; font-size: 12px;">
-                            jejeny
-                        </div>
-                        <div style="color: gray; font-size: 12px;">
-                            추천 사유 들어갈 자리
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <a href="#" style="text-decoration: none; font-weight: bold; font-size: 14px;">팔로우</a>
-                </div>
-            </div>
-            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
-                <div style="display: flex; flex-direction: row;">
-                    <div class="box" style="width: 35px; height: 35px;">
-                        <img class="profile"
-                            src="https://www.cosmorning.com/data/photos/20230101/art_16726386854053_31120b.jpg">
-                    </div>
-                    <div style="margin-left: 10px; text-align: left;">
-                        <div style="font-weight: bold; font-size: 12px;">
-                            minmin_47
-                        </div>
-                        <div style="color: gray; font-size: 12px;">
-                            추천 사유 들어갈 자리
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <a href="#" style="text-decoration: none; font-weight: bold; font-size: 14px;">팔로우</a>
-                </div>
-            </div>
-            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
-                <div style="display: flex; flex-direction: row;">
-                    <div class="box" style="width: 35px; height: 35px;">
-                        <img class="profile"
-                            src="https://i.namu.wiki/i/ayOL5R-h6auuzBOK3vkg9rh8lcvsE4PaZ4eYEormtcVY9Qe8nbyMLrEtl9rSr9NcVx0L9zMkmqPWZW4q-9sARw.webp">
-                    </div>
-                    <div style="margin-left: 10px; text-align: left;">
-                        <div style="font-weight: bold; font-size: 12px;">
-                            godsun.99
-                        </div>
-                        <div style="color: gray; font-size: 12px;">
-                            추천 사유 들어갈 자리
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <a href="#" style="text-decoration: none; font-weight: bold; font-size: 14px;">팔로우</a>
-                </div>
-            </div>
-            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
-                <div style="display: flex; flex-direction: row;">
-                    <div class="box" style="width: 35px; height: 35px;">
-                        <img class="profile" src="https://news.imaeil.com/photos/2020/08/18/2020081816032003756_l.jpg">
-                    </div>
-                    <div style="margin-left: 10px; text-align: left;">
-                        <div style="font-weight: bold; font-size: 12px;">
-                            crystal
-                        </div>
-                        <div style="color: gray; font-size: 12px;">
-                            추천 사유 들어갈 자리
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <a href="#" style="text-decoration: none; font-weight: bold; font-size: 14px;">팔로우</a>
-                </div>
-            </div>
-            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
-                <div style="display: flex; flex-direction: row;">
-                    <div class="box" style="width: 35px; height: 35px;">
-                        <img class="profile"
-                            src="https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/320/e549ece10c7c8feb2d3feefdfe69bb11_res.jpeg">
-                    </div>
-                    <div style="margin-left: 10px; text-align: left;">
-                        <div style="font-weight: bold; font-size: 12px;">
-                            minjiji
-                        </div>
-                        <div style="color: gray; font-size: 12px;">
-                            추천 사유 들어갈 자리
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <a href="#" style="text-decoration: none; font-weight: bold; font-size: 14px;">팔로우</a>
-                </div>
-            </div>
-            <div style="margin-top: 40px; font-size: 12px; color: gray; text-align: left;"> 소개 도움말 홍보센터 API<br> 개인정보처리방침
-                약관 위치 인기 계정 해시태그 언어</div>
-            <div style="margin-top: 20px; font-size: 12px; color: gray; text-align: left;"> 2023 INSTAGRAM FROM FACEBOOK
-            </div>
+           <div style="margin-bottom: 20px;">
+            게시물 팔로워11 팔로우21
+           </div>
+           <div>
+            <b>{{ user.name }}</b>
+           </div>
         </div>
     </div>
+    
 
 
     <!-- 첫 번째 모달 -->
@@ -418,6 +314,10 @@
             }
 
         }
+
+        $('#button_profile_upload').click(function(){
+            $('#input_fileupload').click()
+        })
     </script>
 
 

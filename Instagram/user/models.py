@@ -10,10 +10,10 @@ class User(AbstractBaseUser):
         유저 이메일 주소 => 회원가입 시 사용할 아이디
         유저 비밀번호 => 디폴트 쓰자
     '''
-    profile_img = models.TextField() 
-    nickname = models.CharField(max_length=24, unique=True)
-    name = models.CharField(max_length=24)
     email = models.EmailField(unique=True)    
+    name = models.CharField(max_length=24)
+    nickname = models.CharField(max_length=24, unique=True)
+    profile_img = models.TextField() 
 
     USERNAME_FIELD = 'nickname' # 실제로 user를 선택하면 user의 어떤 필드를 사용할 것인지 정의
 
