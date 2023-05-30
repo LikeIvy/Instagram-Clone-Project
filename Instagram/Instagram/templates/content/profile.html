@@ -103,38 +103,6 @@
     </nav>
 
     <div style="display: flex; flex-direction: row; text-align: center; justify-content: center; padding-top: 60px; background-color: #FAFAFA;">
-            <!-- 피드박스 -->
-            {% for feed in feeds %}
-            <div class="feed_box">
-                <div style="display: flex; flex-direction: row; align-items: center; margin: 0 10px;">
-                    <div class="box" style="width: 35px; height: 35px;">
-                        <img class="profile" src="{{ feed.profile_image }}">
-                    </div>
-                    <div>
-                        {{ feed.user_id }}
-                    </div>
-                </div>
-
-                <div><img style="width: 100%;" src="{% get_media_prefix %}{{ feed.image }}"></div>
-                <div style="display: flex; flex-direction: row; justify-content: space-between; margin: 0 10px;">
-                    <div>
-                        <span class="material-icons-outlined">favorite_border</span>
-                        <span class="material-icons-outlined">mode_comment</span>
-                        <span class="material-icons-outlined">send</span>
-                    </div>
-                    <div>
-                        <span class="material-icons-outlined">bookmark_border</span>
-                    </div>
-                </div>
-                <div style="margin: 0 10px; text-align: left; font-size: 12px;"> 수지 <b>외 {{ feed.like_count }}명</b>이 좋아합니다.</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>{{ feed.user_id }}</b>{{ feed.content}}</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>dino1297</b>나도 일본 여행 가고싶어!</div>
-                <div style="margin: 0 10px; text-align: left; font-size: 13px;"><b>link</b>오키나와는 덥나요?</div>
-                <div style="border-top: solid 1px gray;"><input type="text" class="form-control" style="box-shadow: none; border: none; outline: none;" placeholder="댓글 달기.."></div>
-            </div>
-            {% endfor %}
-            <!-- 피드박스 끝-->
-
         <div style="padding: 20px 60px;"> <!--상하 20 좌우 60-->
             <div class="box" style="width: 175px; height: 175px;">
                 <img class="profile" src="{% get_media_prefix %}{{ user.profile_img }}">
@@ -236,18 +204,14 @@
 
             let file = files[0]  // 실제 이미지 파일
             let image = files[0].name // 이미지 파일 이름
-            let content = $('#input_feed_content').val() // 내용
-            let user_id = '{{ user.nickname }}'
-            let profile_image = '{{ user.profile_img }}'
+            let content = $('#input_feed_content').val() // 내용          
 
             // fd는 form data를 약자로 사용한 것
             let fd = new FormData()
 
             fd.append('file', file)
             fd.append('image', image)
-            fd.append('content', content)
-            fd.append('user_id', user_id)
-            fd.append('profile_image', profile_image)
+            fd.append('content', content)            
             
             $.ajax({
                 url:'/content/upload',

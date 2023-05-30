@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Feed
+from .models import Feed, Reply, Like, Bookmark
 from user.models import User
 from uuid import uuid4
 import os
@@ -10,7 +10,26 @@ from Instagram.settings import MEDIA_ROOT
 # Create your views here.
 class Main(APIView):
     def get(self, request):
-        feed_list = Feed.objects.all().order_by('-id') # select * from content_feed;(쿼리셋)
+        feed_object_list = Feed.objects.all().order_by('-id') # select * from content_feed;(쿼리셋)
+        feed_list = []
+        
+        for feed in feed_object_list:
+            user = User.objects.filter(email=feed.email).first()
+            reply_object_list = Reply.objects.filter(feed_id=feed.id)
+            reply_list = []
+            for reply in reply_object_list:
+                user = User.objects.filter(email=feed.email).first()
+                reply_list.append(dict(reply_content=reply.reply_content,
+                                       nickname=user.nickname))
+
+            feed_list.append(dict(id=feed.id,
+                                  image=feed.image,
+                                  content=feed.content,
+                                  like_count=feed.like_count,
+                                  profile_image=user.profile_img,
+                                  nickname=user.nickname,
+                                  reply_list=reply_list
+                                  ))
 
         email = request.session.get('email', None)
 
@@ -38,10 +57,9 @@ class UploadFeed(APIView):
                 
         image = uuid_name
         content = request.data.get('content')
-        user_id = request.data.get('user_id')
-        profile_image = request.data.get('profile_image')
+        email = request.session.get('email', None)
     
-        Feed.objects.create(image=image, content=content, user_id=user_id, profile_image=profile_image, like_count=0) # 피드를 새로 만듦(DB에 추가)
+        Feed.objects.create(image=image, content=content, email=email, like_count=0) # 피드를 새로 만듦(DB에 추가)
 
         return Response(status=200)
     
@@ -58,3 +76,15 @@ class Profile(APIView):
         if user is None:
             return render(request, 'user/login.html')
         return render(request, 'content/profile.html', context=dict(user=user))
+    
+
+
+class UploadReply(APIView):
+    def post(self, request):
+        feed_id = request.data.get('feed_id', None)
+        reply_content = request.data.get('reply_content', None)
+        email = request.session.get('email', None)
+
+        Reply.objects.create(feed_id=feed_id, reply_content=reply_content, email=email)
+
+        return Response(status=200)
