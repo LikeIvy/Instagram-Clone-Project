@@ -64,7 +64,7 @@ class UploadFeed(APIView):
         content = request.data.get('content')
         email = request.session.get('email', None)
     
-        Feed.objects.create(image=image, content=content, email=email, like_count=0) # 피드를 새로 만듦(DB에 추가)
+        Feed.objects.create(image=image, content=content, email=email) # 피드를 새로 만듦(DB에 추가)
 
         return Response(status=200)
     
@@ -81,7 +81,13 @@ class Profile(APIView):
 
         if user is None:
             return render(request, 'user/login.html')
-        return render(request, 'content/profile.html', context=dict(user=user))
+        
+        feed_list = Feed.objects.filter(email=email)
+        like_list = list(Like.objects.filter(email=email, is_like=True).values_list('feed_id', flat=True)) # value_list와 flat을 true로 준 후 list로 감싸주면 object가 리스트로 나옴
+        like_feed_list = Feed.objects.filter(id__in=like_list) # id__in => Feed에 있는 아이디중 like_list(피드 아이디 리스트를 포함하고 있는 애들만 걸린다)
+        bookmark_list = list(Bookmark.objects.filter(email=email, is_marked=True).values_list('feed_id', flat=True))
+        bookmark_feed_list = Feed.objects.filter(id__in=bookmark_list)
+        return render(request, 'content/profile.html', context=dict(feed_list=feed_list, like_feed_list=like_feed_list, bookmark_feed_list=bookmark_feed_list, user=user))
     
 
 

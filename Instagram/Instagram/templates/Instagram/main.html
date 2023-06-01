@@ -124,11 +124,11 @@
                 <div style="display: flex; flex-direction: row; justify-content: space-between; margin: 0 10px;">
                     <div>
                         <span id="favorite_{{ feed.id }}"  feed_id="{{ feed.id }}" class="favorite material-icons-outlined" style="color: red; cursor: pointer;">
-                        {% if feed.is_liked %}favorite{% else %}favorite_border{% endif %}</span> 
+                            {% if feed.is_liked %}favorite{% else %}favorite_border{% endif %}</span> 
                     </div>
                     <div>
-                        <span id="bookmark_{{ feed.id }}" feed_id="{{ feed.id }}" class="bookmark material-icons-outlined" style="cursor: pointer;">
-                        {% if feed.is_marked %}bookmark{% else %}bookmark_border{% endif %}</span>
+                        <span id="bookmark_{{ feed.id }}" feed_id="{{ feed.id }}" class="bookmark material-icons-outlined" style="cursor: pointer">
+                            {% if feed.is_marked %}bookmark{% else %}bookmark_border{% endif %}</span>
                     </div>
                 </div>
                 <div style="margin: 0 10px; text-align: left; font-size: 12px;"> Hororo <b>외 {{ feed.like_count }}명</b>이 좋아합니다.</div>
@@ -324,33 +324,32 @@
     <!-- Optional JavaScript; choose one of the two! -->
     <script>
 
-        $('.bookmark').click(function (e){
-            let feed_id = e.target.attributes.getNamedItem('feed_id').value
-            let bookmark_id = e.target.id
-            let bookmark_text = $.trim($('#'+bookmark_id).html())
-            if(bookmark_text == 'bookmark'){
-                $('#'+bookmark_id).html('boomark_border')
-            }else{
-                $('#'+bookmark_id).html('bookmark')
-            }
+        $(".bookmark").click(function (event) {
+        let feed_id = event.target.attributes.getNamedItem('feed_id').value
+        let bookmark_id = event.target.id
+        let bookmark_text = $.trim($('#' + bookmark_id).html())
+        if (bookmark_text == 'bookmark') {
+            $('#' + bookmark_id).html('bookmark_border')
+        } else {
+            $('#' + bookmark_id).html('bookmark')
+        }
 
-            $.ajax({
-                url:'/content/bookmark',
-                  data: {
-                    feed_id : feed_id,
-                    bookmark_text : bookmark_text
-                  },
-                  method: 'POST',
-    
-                  success: function(data){
-                      console.log('성공')                 
-                  },
-                  error: function(request, status, error){
-                      console.log('에러')
-                  },
-                  complete: function(){   
-                      console.log('완료')                
-                  }
+        $.ajax({
+            url: "/content/bookmark",
+            data: {
+                feed_id: feed_id,
+                bookmark_text: bookmark_text
+            },
+            method: "POST",
+            success: function (data) {
+                console.log("성공")
+            },
+            error: function (request, status, error) {
+                console.log("에러")
+            },
+            complete: function () {
+                console.log("완료")
+            }
             })
         })
 
